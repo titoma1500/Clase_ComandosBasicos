@@ -1,4 +1,4 @@
 lb8.html
 *.exe
 *.log
-
+/node_module
