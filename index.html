@@ -1,447 +1,1012 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en" data-bs-theme="auto">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="" />
+    <meta
+      name="author"
+      content="Mark Otto, Jacob Thornton, and Bootstrap contributors"
+    />
+    <meta name="generator" content="Hugo 0.145.0" />
+    <title>MyCS - FISEI</title>
 
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="">
-  <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
-  <meta name="generator" content="Hugo 0.145.0">
-  <title>MyCS - FISEI</title>
+    <link
+      rel="canonical"
+      href="https://getbootstrap.com/docs/5.3/examples/carousel/"
+    />
+    <script src="./assets/js/color-modes.js"></script>
 
-  <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/carousel/">
+    <!-- Bootstrap CSS desde CDN -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
 
-  <script src="../assets/js/color-modes.js"></script>
+    <link
+      rel="apple-touch-icon"
+      href="./assets/img/favicons/apple-touch-icon.png"
+      sizes="180x180"
+    />
+    <link
+      rel="icon"
+      href="./assets/img/favicons/favicon-32x32.png"
+      sizes="32x32"
+      type="image/png"
+    />
+    <link
+      rel="icon"
+      href="./assets/img/favicons/favicon-16x16.png"
+      sizes="16x16"
+      type="image/png"
+    />
+    <link rel="manifest" href="./assets/img/favicons/manifest.json" />
+    <link
+      rel="mask-icon"
+      href="./assets/img/favicons/safari-pinned-tab.svg"
+      color="#712cf9"
+    />
+    <link rel="icon" href="./assets/img/favicons/favicon.ico" />
 
-  <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
+    <meta name="theme-color" content="#712cf9" />
 
-  <link rel="apple-touch-icon" href="../assets/img/favicons/apple-touch-icon.png" sizes="180x180">
-  <link rel="icon" href="./assets/img/favicons/favicon-32x32.png" sizes="32x32" type="image/png">
-  <link rel="icon" href="./assets/img/favicons/favicon-16x16.png" sizes="16x16" type="image/png">
-  <link rel="manifest" href="./assets/img/favicons/manifest.json">
-  <link rel="mask-icon" href="./assets/img/favicons/safari-pinned-tab.svg" color="#712cf9">
-  <link rel="icon" href="./assets/img/favicons/favicon.ico">
-
-  <meta name="theme-color" content="#712cf9">
-
-
-  <style>
-    .bd-placeholder-img {
-      font-size: 1.125rem;
-      text-anchor: middle;
-      -webkit-user-select: none;
-      -moz-user-select: none;
-      user-select: none;
-    }
-
-    @media (min-width: 768px) {
-      .bd-placeholder-img-lg {
-        font-size: 3.5rem;
+    <style>
+      :root {
+        --color-primary: #8a1538;
+        --color-primary-hover: #6a102c;
+        --color-accent: #dc2626;
+        --color-accent-hover: #b91c1c;
+        --color-emphasis: #1d4ed8;
+        --color-text: #374151;
+        --color-background: #ffffff;
+        --color-hover: #f8d7da;
+        --color-shadow: rgba(0, 0, 0, 0.05);
       }
-    }
 
-    .b-example-divider {
-      width: 100%;
-      height: 3rem;
-      background-color: rgba(0, 0, 0, .1);
-      border: solid rgba(0, 0, 0, .15);
-      border-width: 1px 0;
-      box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
-    }
+      .btn-primary {
+        background-color: var(--color-primary) !important;
+        border-color: var(--color-primary) !important;
+      }
 
-    .b-example-vr {
-      flex-shrink: 0;
-      width: 1.5rem;
-      height: 100vh;
-    }
+      .btn-primary:hover {
+        background-color: var(--color-primary-hover) !important;
+        border-color: var(--color-primary-hover) !important;
+      }
 
-    .bi {
-      vertical-align: -.125em;
-      fill: currentColor;
-    }
+      .navbar-dark {
+        background-color: var(--color-primary) !important;
+      }
 
-    .nav-scroller {
-      position: relative;
-      z-index: 2;
-      height: 2.75rem;
-      overflow-y: hidden;
-    }
+      .featurette-heading {
+        color: var(--color-primary);
+      }
 
-    .nav-scroller .nav {
-      display: flex;
-      flex-wrap: nowrap;
-      padding-bottom: 1rem;
-      margin-top: -1px;
-      overflow-x: auto;
-      text-align: center;
-      white-space: nowrap;
-      -webkit-overflow-scrolling: touch;
-    }
+      /* Animaciones y transiciones */
+      .carousel-item img {
+        transition: transform 0.3s ease-in-out;
+      }
 
-    .btn-bd-primary {
-      --bd-violet-bg: #712cf9;
-      --bd-violet-rgb: 112.520718, 44.062154, 249.437846;
+      .carousel-item:hover img {
+        transform: scale(1.02);
+      }
 
-      --bs-btn-font-weight: 600;
-      --bs-btn-color: var(--bs-white);
-      --bs-btn-bg: var(--bd-violet-bg);
-      --bs-btn-border-color: var(--bd-violet-bg);
-      --bs-btn-hover-color: var(--bs-white);
-      --bs-btn-hover-bg: #6528e0;
-      --bs-btn-hover-border-color: #6528e0;
-      --bs-btn-focus-shadow-rgb: var(--bd-violet-rgb);
-      --bs-btn-active-color: var(--bs-btn-hover-color);
-      --bs-btn-active-bg: #5a23c8;
-      --bs-btn-active-border-color: #5a23c8;
-    }
+      .nav-link {
+        transition: color 0.3s ease;
+      }
 
-    .bd-mode-toggle {
-      z-index: 1500;
-    }
+      .nav-link:hover {
+        color: var(--color-hover) !important;
+      }
 
-    .bd-mode-toggle .bi {
-      width: 1em;
-      height: 1em;
-    }
+      .btn {
+        transition: all 0.3s ease;
+      }
 
-    .bd-mode-toggle .dropdown-menu .active .bi {
-      display: block !important;
-    }
-  </style>
+      /* Estilo para las imágenes del carrusel */
+      .carousel-item {
+        height: 32rem;
+        background-color: var(--color-primary);
+      }
 
-  <!-- Custom styles for this template -->
-  <link href="carousel.css" rel="stylesheet">
-</head>
+      .carousel-item > img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
 
-<body>
-  <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
-    <symbol id="check2" viewBox="0 0 16 16">
-      <path
-        d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z" />
-    </symbol>
-    <symbol id="circle-half" viewBox="0 0 16 16">
-      <path d="M8 15A7 7 0 1 0 8 1v14zm0 1A8 8 0 1 1 8 0a8 8 0 0 1 0 16z" />
-    </symbol>
-    <symbol id="moon-stars-fill" viewBox="0 0 16 16">
-      <path
-        d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z" />
-      <path
-        d="M10.794 3.148a.217.217 0 0 1 .412 0l.387 1.162c.173.518.579.924 1.097 1.097l1.162.387a.217.217 0 0 1 0 .412l-1.162.387a1.734 1.734 0 0 0-1.097 1.097l-.387 1.162a.217.217 0 0 1-.412 0l-.387-1.162A1.734 1.734 0 0 0 9.31 6.593l-1.162-.387a.217.217 0 0 1 0-.412l1.162-.387a1.734 1.734 0 0 0 1.097-1.097l.387-1.162zM13.863.099a.145.145 0 0 1 .274 0l.258.774c.115.346.386.617.732.732l.774.258a.145.145 0 0 1 0 .274l-.774.258a1.156 1.156 0 0 0-.732.732l-.258.774a.145.145 0 0 1-.274 0l-.258-.774a1.156 1.156 0 0 0-.732-.732l-.774-.258a.145.145 0 0 1 0-.274l.774-.258c.346-.115.617-.386.732-.732L13.863.1z" />
-    </symbol>
-    <symbol id="sun-fill" viewBox="0 0 16 16">
-      <path
-        d="M8 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z" />
-    </symbol>
-  </svg>
+      /* Mejoras visuales generales */
+      .rounded-circle {
+        box-shadow: 0 4px 6px var(--color-shadow);
+        transition: transform 0.3s ease;
+      }
 
+      .rounded-circle:hover {
+        transform: translateY(-5px);
+      }
 
-  <div class="dropdown position-fixed bottom-0 end-0 mb-3 me-3 bd-mode-toggle">
-    <button class="btn btn-bd-primary py-2 dropdown-toggle d-flex align-items-center" id="bd-theme" type="button"
-      aria-expanded="false" data-bs-toggle="dropdown" aria-label="Toggle theme (auto)">
-      <svg class="bi my-1 theme-icon-active" aria-hidden="true">
-        <use href="#circle-half"></use>
-      </svg>
-      <span class="visually-hidden" id="bd-theme-text">Toggle theme</span>
-    </button>
-    <ul class="dropdown-menu dropdown-menu-end shadow" aria-labelledby="bd-theme-text">
-      <li>
-        <button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="light"
-          aria-pressed="false">
-          <svg class="bi me-2 opacity-50" aria-hidden="true">
-            <use href="#sun-fill"></use>
-          </svg>
-          Light
-          <svg class="bi ms-auto d-none" aria-hidden="true">
-            <use href="#check2"></use>
-          </svg>
-        </button>
-      </li>
-      <li>
-        <button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="dark"
-          aria-pressed="false">
-          <svg class="bi me-2 opacity-50" aria-hidden="true">
-            <use href="#moon-stars-fill"></use>
-          </svg>
-          Dark
-          <svg class="bi ms-auto d-none" aria-hidden="true">
-            <use href="#check2"></use>
-          </svg>
-        </button>
-      </li>
-      <li>
-        <button type="button" class="dropdown-item d-flex align-items-center active" data-bs-theme-value="auto"
-          aria-pressed="true">
-          <svg class="bi me-2 opacity-50" aria-hidden="true">
-            <use href="#circle-half"></use>
-          </svg>
-          Auto
-          <svg class="bi ms-auto d-none" aria-hidden="true">
-            <use href="#check2"></use>
-          </svg>
-        </button>
-      </li>
-    </ul>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
 
-  </div>
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
 
+      .b-example-divider {
+        width: 100%;
+        height: 3rem;
+        background-color: rgba(0, 0, 0, 0.1);
+        border: solid rgba(0, 0, 0, 0.15);
+        border-width: 1px 0;
+        box-shadow: inset 0 0.5em 1.5em rgba(0, 0, 0, 0.1),
+          inset 0 0.125em 0.5em rgba(0, 0, 0, 0.15);
+      }
 
-  <header data-bs-theme="dark">
-    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="#">MyCS - FISEI</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
-          aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarCollapse">
-          <ul class="navbar-nav me-auto mb-2 mb-md-0">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">Inicio</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Software</a>
-            </li>
-          </ul>
-          <form class="d-flex" role="search">
-            <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
-            <button class="btn btn-outline-success" type="submit">Buscar</button>
-          </form>
-        </div>
-      </div>
-    </nav>
-  </header>
+      .b-example-vr {
+        flex-shrink: 0;
+        width: 1.5rem;
+        height: 100vh;
+      }
 
-  <main>
+      .bi {
+        vertical-align: -0.125em;
+        fill: currentColor;
+      }
 
-    <div id="myCarousel" class="carousel slide mb-6" data-bs-ride="carousel">
-      <div class="carousel-indicators">
-        <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-current="true"
-          aria-label="Slide 1"></button>
-        <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
-        <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
-      </div>
-      <div class="carousel-inner">
-        <div class="carousel-item active">
-          <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"
-            aria-hidden="true" preserveAspectRatio="xMidYMid slice">
-            <rect width="100%" height="100%" fill="var(--bs-secondary-color)" />
-          </svg>
-          <div class="container">
-            <div class="carousel-caption text-start">
-              <h1>BIBLIOTECA</h1>
-              <p class="opacity-75">Otorga prestamos de libros digitales y físicos de la FISEI.</p>
-              <p><a class="btn btn-lg btn-primary" href="#">Ver más ...</a></p>
-            </div>
-          </div>
-        </div>
-        <div class="carousel-item">
-          <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"
-            aria-hidden="true" preserveAspectRatio="xMidYMid slice">
-            <rect width="100%" height="100%" fill="var(--bs-secondary-color)" />
-          </svg>
-          <div class="container">
-            <div class="carousel-caption">
-              <h1>CTT - TALLERES TECNOLÓGICOS.</h1>
-              <p>Oferta de curso de capacitación en áreas técnicas. Y asesoria en proyectos de investogación.</p>
-              <p><a class="btn btn-lg btn-primary" href="#">Ver más ...</a></p>
-            </div>
-          </div>
-        </div>
-        <div class="carousel-item">
-          <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"
-            aria-hidden="true" preserveAspectRatio="xMidYMid slice">
-            <rect width="100%" height="100%" fill="var(--bs-secondary-color)" />
-          </svg>
-          <div class="container">
-            <div class="carousel-caption text-end">
-              <h1>ADMINISTRACIÓN DE REDES</h1>
-              <p>Soporte técnico a estudiantes, docentes y personal administrativo. Prestamo de equipos para práctica de
-                laboratorio.</p>
-              <p><a class="btn btn-lg btn-primary" href="#">Ver más ...</a></p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
+      .nav-scroller {
+        position: relative;
+        z-index: 2;
+        height: 2.75rem;
+        overflow-y: hidden;
+      }
+
+      .nav-scroller .nav {
+        display: flex;
+        flex-wrap: nowrap;
+        padding-bottom: 1rem;
+        margin-top: -1px;
+        overflow-x: auto;
+        text-align: center;
+        white-space: nowrap;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      .btn-bd-primary {
+        --bd-violet-bg: #712cf9;
+        --bd-violet-rgb: 112.520718, 44.062154, 249.437846;
+
+        --bs-btn-font-weight: 600;
+        --bs-btn-color: var(--bs-white);
+        --bs-btn-bg: var(--bd-violet-bg);
+        --bs-btn-border-color: var(--bd-violet-bg);
+        --bs-btn-hover-color: var(--bs-white);
+        --bs-btn-hover-bg: #6528e0;
+        --bs-btn-hover-border-color: #6528e0;
+        --bs-btn-focus-shadow-rgb: var(--bd-violet-rgb);
+        --bs-btn-active-color: var(--bs-btn-hover-color);
+        --bs-btn-active-bg: #5a23c8;
+        --bs-btn-active-border-color: #5a23c8;
+      }
+
+      .bd-mode-toggle {
+        z-index: 1500;
+      }
+
+      .bd-mode-toggle .bi {
+        width: 1em;
+        height: 1em;
+      }
+
+      .bd-mode-toggle .dropdown-menu .active .bi {
+        display: block !important;
+      }
+
+      /* Efectos 3D y animaciones avanzadas */
+      .card-3d {
+        transition: transform 0.5s ease-in-out;
+        transform-style: preserve-3d;
+        perspective: 1000px;
+      }
+
+      .card-3d:hover {
+        transform: translateY(-10px) rotateX(5deg) rotateY(5deg);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+      }
+
+      .featurette-image {
+        transition: transform 0.5s ease, box-shadow 0.5s ease;
+        border-radius: 15px;
+        overflow: hidden;
+      }
+
+      .featurette-image:hover {
+        transform: scale(1.05) rotate(2deg);
+        box-shadow: 0 10px 20px rgba(138, 21, 56, 0.2);
+      }
+
+      /* Mejoras de estructura y espaciado */
+      .container {
+        padding: 2rem 1rem;
+      }
+
+      .marketing {
+        margin-top: 4rem;
+        margin-bottom: 4rem;
+      }
+
+      .career-card {
+        padding: 2rem !important;
+        margin-bottom: 2rem;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        background: rgba(255, 255, 255, 0.9);
+      }
+
+      .career-icon {
+        display: block;
+        margin: 0 auto 1.5rem;
+        text-align: center;
+      }
+
+      .featurette {
+        padding: 4rem 0;
+        background: rgba(255, 255, 255, 0.95);
+        border-radius: 15px;
+        margin: 2rem 0;
+      }
+
+      .featurette-heading {
+        margin-bottom: 2rem;
+      }
+
+      .section-divider {
+        height: 3px;
+        background: linear-gradient(
+          to right,
+          var(--color-primary),
+          transparent
+        );
+        margin: 4rem 0;
+        border-radius: 3px;
+      }
+
+      /* Mejoras en el carrusel */
+      .carousel {
+        margin-bottom: 4rem;
+      }
+
+      .carousel-caption {
+        max-width: 80%;
+        margin: 0 auto;
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: 20%;
+      }
+
+      .carousel-caption h1 {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+      }
+
+      /* Scroll suave */
+      html {
+        scroll-behavior: smooth;
+      }
+
+      /* Contenedor principal */
+      main {
+        overflow-x: hidden;
+        background: linear-gradient(
+          135deg,
+          rgba(255, 255, 255, 0.9),
+          rgba(255, 255, 255, 0.8)
+        );
+      }
+
+      /* Ajustes responsive */
+      @media (max-width: 768px) {
+        .career-card {
+          margin-bottom: 2rem;
+        }
+
+        .featurette {
+          padding: 2rem 0;
+        }
+
+        .carousel-caption h1 {
+          font-size: 2rem;
+        }
+
+        .section-title {
+          font-size: 2rem;
+        }
+      }
+
+      /* Efectos de paralaje */
+      .parallax {
+        background-attachment: fixed;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+      }
+
+      /* Mejoras en la navegación */
+      .navbar {
+        padding: 1rem 0;
+        transition: all 0.3s ease;
+      }
+
+      .navbar.scrolled {
+        padding: 0.5rem 0;
+        background: var(--color-primary) !important;
+      }
+
+      .navbar-brand {
+        font-size: 1.5rem;
+        font-weight: bold;
+        transition: all 0.3s ease;
+      }
+
+      /* Efectos de texto */
+      .carousel-caption h1 {
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        animation: slideInUp 0.5s ease-out;
+      }
+
+      .carousel-caption p {
+        animation: fadeIn 0.8s ease-out;
+      }
+
+      /* Animaciones del carrusel */
+      .carousel-item.active img {
+        animation: zoomIn 20s ease infinite alternate;
+      }
+
+      @keyframes zoomIn {
+        from {
+          transform: scale(1);
+        }
+        to {
+          transform: scale(1.1);
+        }
+      }
+
+      @keyframes slideInUp {
+        from {
+          transform: translateY(20px);
+          opacity: 0;
+        }
+        to {
+          transform: translateY(0);
+          opacity: 1;
+        }
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      /* Estilos para las cards de carreras */
+      .career-card {
+        border-radius: 15px;
+        overflow: hidden;
+        transition: all 0.3s ease;
+        background: linear-gradient(145deg, #ffffff, #f3f4f6);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      .career-card:hover {
+        transform: translateY(-10px) rotate(2deg);
+        box-shadow: 0 15px 30px rgba(138, 21, 56, 0.2);
+      }
+
+      .career-icon {
+        font-size: 3rem;
+        color: var(--color-primary);
+        margin-bottom: 1rem;
+        transition: transform 0.3s ease;
+      }
+
+      .career-card:hover .career-icon {
+        transform: scale(1.2) rotate(-10deg);
+      }
+
+      /* Footer mejorado */
+      footer {
+        background: linear-gradient(
+          to right,
+          var(--color-primary),
+          var(--color-primary-hover)
+        );
+        color: white;
+        padding: 2rem 0;
+        margin-top: 3rem;
+        border-radius: 15px 15px 0 0;
+      }
+
+      footer a {
+        color: white;
+        text-decoration: none;
+        transition: color 0.3s ease;
+      }
+
+      footer a:hover {
+        color: var(--color-hover);
+      }
+
+      /* Efectos 3D avanzados y animaciones */
+      .animated-bg {
+        background: linear-gradient(
+          45deg,
+          var(--color-primary),
+          var(--color-primary-hover)
+        );
+        background-size: 200% 200%;
+        animation: gradientBG 15s ease infinite;
+      }
+
+      @keyframes gradientBG {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+
+      .floating {
+        animation: floating 3s ease-in-out infinite;
+      }
+
+      @keyframes floating {
+        0% {
+          transform: translateY(0px);
+        }
+        50% {
+          transform: translateY(-20px);
+        }
+        100% {
+          transform: translateY(0px);
+        }
+      }
+
+      .career-card {
+        position: relative;
+        transform-style: preserve-3d;
+        transition: all 0.8s ease;
+      }
+
+      .career-card::before {
+        content: "";
+        position: absolute;
+        inset: -10px;
+        background: linear-gradient(
+          45deg,
+          var(--color-primary),
+          var(--color-accent)
+        );
+        transform: translateZ(-1px);
+        border-radius: 20px;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+
+      .career-card:hover::before {
+        opacity: 1;
+      }
+
+      .career-card:hover {
+        transform: translateY(-15px) rotateX(10deg) rotateY(10deg);
+        box-shadow: 20px 20px 40px rgba(0, 0, 0, 0.2);
+      }
+
+      .section-title {
+        font-size: 2.5rem;
+        color: var(--color-primary);
+        text-align: center;
+        margin: 3rem 0;
+        position: relative;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+      }
+
+      .section-title::after {
+        content: "";
+        position: absolute;
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100px;
+        height: 4px;
+        background: var(--color-primary);
+        border-radius: 2px;
+      }
+
+      .feature-icon {
+        font-size: 4rem;
+        color: var(--color-primary);
+        margin-bottom: 1rem;
+        transition: all 0.5s ease;
+      }
+
+      .feature-card:hover .feature-icon {
+        transform: scale(1.2) rotateY(180deg);
+      }
+
+      /* Mejoras en el carrusel */
+      .carousel-caption {
+        background: rgba(0, 0, 0, 0.6);
+        padding: 2rem;
+        border-radius: 15px;
+        backdrop-filter: blur(5px);
+      }
+
+      .btn-primary {
+        position: relative;
+        overflow: hidden;
+      }
+
+      .btn-primary::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.2),
+          transparent
+        );
+        transition: 0.5s;
+      }
+
+      .btn-primary:hover::before {
+        left: 100%;
+      }
+    </style>
+
+    <!-- Custom styles for this template -->
+    <link href="carousel.css" rel="stylesheet" />
+    <!-- Font Awesome para íconos -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
+      <symbol id="check2" viewBox="0 0 16 16">
+        <path
+          d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"
+        />
+      </symbol>
+      <symbol id="circle-half" viewBox="0 0 16 16">
+        <path d="M8 15A7 7 0 1 0 8 1v14zm0 1A8 8 0 1 1 8 0a8 8 0 0 1 0 16z" />
+      </symbol>
+      <symbol id="moon-stars-fill" viewBox="0 0 16 16">
+        <path
+          d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z"
+        />
+        <path
+          d="M10.794 3.148a.217.217 0 0 1 .412 0l.387 1.162c.173.518.579.924 1.097 1.097l1.162.387a.217.217 0 0 1 0 .412l-1.162.387a1.734 1.734 0 0 0-1.097 1.097l-.387 1.162a.217.217 0 0 1-.412 0l-.387-1.162A1.734 1.734 0 0 0 9.31 6.593l-1.162-.387a.217.217 0 0 1 0-.412l1.162-.387a1.734 1.734 0 0 0 1.097-1.097l.387-1.162zM13.863.099a.145.145 0 0 1 .274 0l.258.774c.115.346.386.617.732.732l.774.258a.145.145 0 0 1 0 .274l-.774.258a1.156 1.156 0 0 0-.732.732l-.258.774a.145.145 0 0 1-.274 0l-.258-.774a1.156 1.156 0 0 0-.732-.732l-.774-.258a.145.145 0 0 1 0-.274l.774-.258c.346-.115.617-.386.732-.732L13.863.1z"
+        />
+      </symbol>
+      <symbol id="sun-fill" viewBox="0 0 16 16">
+        <path
+          d="M8 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"
+        />
+      </symbol>
+    </svg>
+
+    <div
+      class="dropdown position-fixed bottom-0 end-0 mb-3 me-3 bd-mode-toggle"
+    >
+      <button
+        class="btn btn-bd-primary py-2 dropdown-toggle d-flex align-items-center"
+        id="bd-theme"
+        type="button"
+        aria-expanded="false"
+        data-bs-toggle="dropdown"
+        aria-label="Toggle theme (auto)"
+      >
+        <svg class="bi my-1 theme-icon-active" aria-hidden="true">
+          <use href="#circle-half"></use>
+        </svg>
+        <span class="visually-hidden" id="bd-theme-text">Toggle theme</span>
       </button>
-      <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-      </button>
+      <ul
+        class="dropdown-menu dropdown-menu-end shadow"
+        aria-labelledby="bd-theme-text"
+      >
+        <li>
+          <button
+            type="button"
+            class="dropdown-item d-flex align-items-center"
+            data-bs-theme-value="light"
+            aria-pressed="false"
+          >
+            <svg class="bi me-2 opacity-50" aria-hidden="true">
+              <use href="#sun-fill"></use>
+            </svg>
+            Light
+            <svg class="bi ms-auto d-none" aria-hidden="true">
+              <use href="#check2"></use>
+            </svg>
+          </button>
+        </li>
+        <li>
+          <button
+            type="button"
+            class="dropdown-item d-flex align-items-center"
+            data-bs-theme-value="dark"
+            aria-pressed="false"
+          >
+            <svg class="bi me-2 opacity-50" aria-hidden="true">
+              <use href="#moon-stars-fill"></use>
+            </svg>
+            Dark
+            <svg class="bi ms-auto d-none" aria-hidden="true">
+              <use href="#check2"></use>
+            </svg>
+          </button>
+        </li>
+        <li>
+          <button
+            type="button"
+            class="dropdown-item d-flex align-items-center active"
+            data-bs-theme-value="auto"
+            aria-pressed="true"
+          >
+            <svg class="bi me-2 opacity-50" aria-hidden="true">
+              <use href="#circle-half"></use>
+            </svg>
+            Auto
+            <svg class="bi ms-auto d-none" aria-hidden="true">
+              <use href="#check2"></use>
+            </svg>
+          </button>
+        </li>
+      </ul>
     </div>
-    <h1> titulo de cambio de mision </h1>
 
+    <header data-bs-theme="dark">
+      <nav class="navbar navbar-expand-md navbar-dark fixed-top">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">
+            <img
+              src="https://i.imgur.com/3N8shIt.png"
+              alt="Logo UTA"
+              height="30"
+              class="d-inline-block align-text-top me-2"
+            />
+            MyCS - FISEI
+          </a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarCollapse"
+            aria-controls="navbarCollapse"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav me-auto mb-2 mb-md-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#"
+                  >Inicio</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Software</a>
+              </li>
+            </ul>
+            <form class="d-flex" role="search">
+              <input
+                class="form-control me-2"
+                type="search"
+                placeholder="Buscar"
+                aria-label="Search"
+              />
+              <button class="btn btn-outline-success" type="submit">
+                Buscar
+              </button>
+            </form>
+          </div>
+        </div>
+      </nav>
+    </header>
 
-    <!-- Marketing messaging and featurettes
+    <main>
+      <div id="myCarousel" class="carousel slide mb-6" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+          <button
+            type="button"
+            data-bs-target="#myCarousel"
+            data-bs-slide-to="0"
+            class="active"
+            aria-current="true"
+            aria-label="Slide 1"
+          ></button>
+          <button
+            type="button"
+            data-bs-target="#myCarousel"
+            data-bs-slide-to="1"
+            aria-label="Slide 2"
+          ></button>
+          <button
+            type="button"
+            data-bs-target="#myCarousel"
+            data-bs-slide-to="2"
+            aria-label="Slide 3"
+          ></button>
+        </div>
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img
+              src="https://i.imgur.com/yaIIyFU.png"
+              class="w-100"
+              alt="Universidad Técnica de Ambato"
+              style="height: 100%; object-fit: cover"
+            />
+            <div class="container">
+              <div class="carousel-caption text-start">
+                <h1>UNIVERSIDAD TÉCNICA DE AMBATO</h1>
+                <p class="opacity-75">
+                  Formando profesionales de excelencia para el desarrollo del
+                  país
+                </p>
+                <p>
+                  <a class="btn btn-lg btn-primary" href="#">Conoce más</a>
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <img
+              src="https://i.imgur.com/c6Ry30Z.jpeg"
+              class="w-100"
+              alt="Biblioteca FISEI"
+              style="height: 100%; object-fit: cover"
+            />
+            <div class="container">
+              <div class="carousel-caption">
+                <h1>CTT - TALLERES TECNOLÓGICOS.</h1>
+                <p>
+                  Oferta de curso de capacitación en áreas técnicas. Y asesoria
+                  en proyectos de investogación.
+                </p>
+                <p>
+                  <a class="btn btn-lg btn-primary" href="#">Ver más ...</a>
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <svg
+              class="bd-placeholder-img"
+              width="100%"
+              height="100%"
+              xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true"
+              preserveAspectRatio="xMidYMid slice"
+            >
+              <rect
+                width="100%"
+                height="100%"
+                fill="var(--bs-secondary-color)"
+              />
+            </svg>
+            <div class="container">
+              <div class="carousel-caption text-end">
+                <h1>ADMINISTRACIÓN DE REDES</h1>
+                <p>
+                  Soporte técnico a estudiantes, docentes y personal
+                  administrativo. Prestamo de equipos para práctica de
+                  laboratorio.
+                </p>
+                <p>
+                  <a class="btn btn-lg btn-primary" href="#">Ver más ...</a>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button
+          class="carousel-control-prev"
+          type="button"
+          data-bs-target="#myCarousel"
+          data-bs-slide="prev"
+        >
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button
+          class="carousel-control-next"
+          type="button"
+          data-bs-target="#myCarousel"
+          data-bs-slide="next"
+        >
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+      <!-- Marketing messaging and featurettes
   ================================================== -->
-    <!-- Wrap the rest of the page in another container to center all the content. -->
-
-    <div class="container marketing">
-
-      <!-- Three columns of text below the carousel -->
-      <div class="row">
-        <div class="col-lg-4">
-         <img src="https://micarrerauniversitaria.com/wp-content/uploads/2018/02/ent-software-businessman-ts-100539050-primary.idge_.jpg"
-     class="bd-placeholder-img rounded-circle"
-     width="140"
-     height="140"
-     alt="Logo JavaScript"
-     style="object-fit: cover;">
-          <h2 class="fw-normal">CARRERA DE SOFTWARE</h2>
-          <p>El perfil profesional del Ingeniero de Software debe demostrar actitudes, destrezas que le permitirán
-            desarrollar actividades en su área profesional, adaptarse a nuevas situaciones, transferir sus
-            conocimientos, habilidades y actitudes a áreas profesionales próximas que garanticen su desempeño en el
-            campo laboral.</p>
-          <p><a class="btn btn-secondary" href="#">Ver detalles ... &raquo;</a></p>
-        </div><!-- /.col-lg-4 -->
-        <div class="col-lg-4">
-          <img src="https://revistaemprende.cl/wp-content/uploads/2024/05/5-razones-de-por-que-es-recomendable-estudiar-una-carrera-TI.webp"
-     class="bd-placeholder-img rounded-circle"
-     width="140"
-     height="140"
-     alt="Logo JavaScript"
-     style="object-fit: cover;">
-          <h2 class="fw-normal">CARRERA DE TI</h2>
-          <p>El perfil profesional del Ingeniero en Tecnologías de la Información debe demostrar actitudes, destrezas
-            que le permitirán desarrollar actividades en su área profesional, adaptarse a nuevas situaciones, transferir
-            sus conocimientos, habilidades y actitudes a áreas profesionales próximas que garanticen su desempeño en el
-            campo laboral.</p>
-          <p><a class="btn btn-secondary" href="#">Ver detalles ... &raquo;</a></p>
-        </div><!-- /.col-lg-4 -->
-        <div class="col-lg-4">
-          <img src="https://www.nosequeestudiar.net/site/assets/files/1730776/ingeniera-trabajando.jpg"
-     class="bd-placeholder-img rounded-circle"
-     width="140"
-     height="140"
-     alt="Logo JavaScript"
-     style="object-fit: cover;">
-          <h2 class="fw-normal">CARRERA DE INDUSTRIAL</h2>
-          <p>El perfil profesional del Ingeniero Industrial debe demostrar actitudes, destrezas que le permitirán
-            desarrollar actividades en su área profesional,
-            adaptarse a nuevas situaciones, transferir sus conocimientos, habilidades y actitudes a áreas profesionales
-            próximas que garanticen su desempeño en el campo laboral</p>
-          <p><a class="btn btn-secondary" href="#">Ver detalles ... &raquo;</a></p>
-        </div><!-- /.col-lg-4 -->
-      </div><!-- /.row -->
-
-
-      <!-- START THE FEATURETTES -->
-
-      <hr class="featurette-divider">
-
-      <div class="row featurette">
-        <div class="col-md-7">
-          <h2 class="featurette-heading fw-normal lh-1">Mision <span class="text-body-secondary">It’ll blow your
-              mind.</span></h2>
-          <p class="lead">Formar profesionales líderes competentes, con visión humanista y pensamiento crítico a través
-            de la Docencia,
-            la Investigación y la Vinculación, que apliquen, promuevan y difundan el conocimiento respondiendo a las
-            necesidades del país.</p>
+      <!-- Wrap the rest of the page in another container to center all the content. -->
+      <div class="container marketing">
+        <h2 class="section-title">Nuestras Carreras</h2>
+        <div class="row">
+          <div class="col-lg-4">
+            <div class="career-card h-100">
+              <i class="fas fa-laptop-code career-icon floating"></i>
+              <h2 class="fw-normal">CARRERA DE SOFTWARE</h2>
+              <p>
+                El perfil profesional del Ingeniero de Software debe demostrar
+                actitudes, destrezas que le permitirán desarrollar actividades
+                en su área profesional, adaptarse a nuevas situaciones,
+                transferir sus conocimientos, habilidades y actitudes a áreas
+                profesionales próximas que garanticen su desempeño en el campo
+                laboral.
+              </p>
+              <p>
+                <a class="btn btn-secondary" href="#">Ver detalles &raquo;</a>
+              </p>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="career-card h-100">
+              <i class="fas fa-network-wired career-icon floating"></i>
+              <h2 class="fw-normal">CARRERA DE TI</h2>
+              <p>
+                El perfil profesional del Ingeniero en Tecnologías de la
+                Información debe demostrar actitudes, destrezas que le
+                permitirán desarrollar actividades en su área profesional,
+                adaptarse a nuevas situaciones, transferir sus conocimientos,
+                habilidades y actitudes a áreas profesionales próximas que
+                garanticen su desempeño en el campo laboral.
+              </p>
+              <p>
+                <a class="btn btn-secondary" href="#">Ver detalles &raquo;</a>
+              </p>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="career-card h-100">
+              <i class="fas fa-industry career-icon floating"></i>
+              <h2 class="fw-normal">CARRERA DE INDUSTRIAL</h2>
+              <p>
+                El perfil profesional del Ingeniero Industrial debe demostrar
+                actitudes, destrezas que le permitirán desarrollar actividades
+                en su área profesional, adaptarse a nuevas situaciones,
+                transferir sus conocimientos, habilidades y actitudes a áreas
+                profesionales próximas que garanticen su desempeño en el campo
+                laboral.
+              </p>
+              <p>
+                <a class="btn btn-secondary" href="#">Ver detalles &raquo;</a>
+              </p>
+            </div>
+          </div>
         </div>
-        <div class="col-md-5">
-          <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500"
-            height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500"
-            preserveAspectRatio="xMidYMid slice">
-            <title>Placeholder</title>
-            <rect width="100%" height="100%" fill="var(--bs-secondary-bg)" /><text x="50%" y="50%"
-              fill="var(--bs-secondary-color)" dy=".3em">500x500</text>
-          </svg>
+        <!-- /.row -->
+
+        <!-- START THE FEATURETTES -->
+        <hr class="featurette-divider" />
+
+        <div class="row featurette">
+          <div class="col-md-7">
+            <h2 class="featurette-heading fw-normal lh-1">
+              Excelencia Académica
+              <span class="text-body-secondary">Formando el futuro.</span>
+            </h2>
+            <p class="lead">
+              La Universidad Técnica de Ambato se destaca por su compromiso con
+              la excelencia académica, ofreciendo programas innovadores y una
+              educación integral que prepara a los estudiantes para los desafíos
+              del mañana.
+            </p>
+          </div>
+          <div class="col-md-5">
+            <img
+              src="https://i.imgur.com/yaIIyFU.png"
+              class="featurette-image img-fluid mx-auto"
+              width="500"
+              height="500"
+              alt="Campus UTA"
+            />
+          </div>
         </div>
+
+        <hr class="featurette-divider" />
+
+        <div class="row featurette">
+          <div class="col-md-7 order-md-2">
+            <h2 class="featurette-heading fw-normal lh-1">
+              Investigación e Innovación
+              <span class="text-body-secondary">Creando conocimiento.</span>
+            </h2>
+            <p class="lead">
+              Nuestros centros de investigación y laboratorios equipados con
+              tecnología de punta facilitan el desarrollo de proyectos
+              innovadores y la generación de soluciones para los desafíos de la
+              sociedad actual.
+            </p>
+          </div>
+          <div class="col-md-5 order-md-1">
+            <img
+              src="https://i.imgur.com/c6Ry30Z.jpeg"
+              class="featurette-image img-fluid mx-auto"
+              width="500"
+              height="500"
+              alt="Laboratorio UTA"
+            />
+          </div>
+        </div>
+
+        <hr class="featurette-divider" />
+
+        <div class="row featurette">
+          <div class="col-md-7">
+            <h2 class="featurette-heading fw-normal lh-1">
+              Vinculación Social
+              <span class="text-body-secondary"
+                >Impactando en la comunidad.</span
+              >
+            </h2>
+            <p class="lead">
+              Nuestro compromiso con la sociedad se refleja en proyectos de
+              vinculación que conectan el conocimiento académico con las
+              necesidades reales de nuestra comunidad, generando un impacto
+              positivo en la región.
+            </p>
+          </div>
+          <div class="col-md-5">
+            <img
+              src="https://i.imgur.com/3N8shIt.png"
+              class="featurette-image img-fluid mx-auto"
+              width="500"
+              height="500"
+              alt="Vinculación Social UTA"
+            />
+          </div>
+        </div>
+
+        <hr class="featurette-divider" />
+
+        <!-- /END THE FEATURETTES -->
       </div>
+      <!-- /.container -->
 
-      <hr class="featurette-divider">
-
-      <div class="row featurette">
-        <div class="col-md-7 order-md-2">
-          <h2 class="featurette-heading fw-normal lh-1"> Vision <span class="text-body-secondary">See for
-              yourself.</span></h2>
-          <p class="lead">La Universidad Técnica de Ambato por sus niveles de excelencia se constituirá
-            como un centro de formación superior con liderazgo y proyección nacional e internacional.</p>
-        </div>
-        <div class="col-md-5 order-md-1">
-          <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500"
-            height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500"
-            preserveAspectRatio="xMidYMid slice">
-            <title>Placeholder</title>
-            <rect width="100%" height="100%" fill="var(--bs-secondary-bg)" /><text x="50%" y="50%"
-              fill="var(--bs-secondary-color)" dy=".3em">500x500</text>
-          </svg>
-        </div>
-      </div>
-
-      <hr class="featurette-divider">
-
-      <div class="row featurette">
-        <div class="col-md-7">
-          <h2 class="featurette-heading fw-normal lh-1">And lastly, this one. <span
-              class="text-body-secondary">Checkmate.</span></h2>
-          <p class="lead">And yes, this is the last block of representative placeholder content. Again, not really
-            intended to be actually read, simply here to give you a better view of what this would look like with some
-            actual content. Your content.</p>
-        </div>
-        <div class="col-md-5">
-          <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500"
-            height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500"
-            preserveAspectRatio="xMidYMid slice">
-            <title>Placeholder</title>
-            <rect width="100%" height="100%" fill="var(--bs-secondary-bg)" /><text x="50%" y="50%"
-              fill="var(--bs-secondary-color)" dy=".3em">500x500</text>
-          </svg>
-        </div>
-      </div>
-
-      <hr class="featurette-divider">
-
-      <div class="row featurette">
-        <div class="col-md-7 order-md-2">
-          <h2 class="featurette-heading fw-normal lh-1">Ing. Mg. Franklin Mayorga <span
-              class="text-body-secondary"></span></h2>
-          <p class="lead">Horario de Atención</p>
-          <p class="lead">Lunes a Viernes de 8:00 a 12:00 y de 14:00 a 18:00</p>
-          <p class="lead">Dirección</p>
-          <p class="lead"></p>AV. Los Chasquis y Rio Payamino</p>
-        </div>
-        <div class="col-md-5 order-md-1">
-          <img src="https://i.imgur.com/QpKtooh.png"
-            class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500"
-            alt="Imagen de Franklin Mayorga">
-        </div>
-      </div>
-
-      <hr class="featurette-divider">
-
-      <div class="row featurette">
-        <div class="col-md-7">
-          <h2 class="featurette-heading fw-normal lh-1">Ing. Mg. Luis Morales<span class="text-body-secondary"></span>
-          </h2>
-          <p class="lead">Horario de Atención</p>
-          <p class="lead">Lunes a Viernes de 8:00 a 12:00 y de 14:00 a 18:00</p>
-          <p class="lead">Dirección</p>
-          <p class="lead"></p>AV. Los Chasquis y Rio Payamino</p>
-        </div>
-        <div class="col-md-5">
-          <img src="https://i.imgur.com/QpKtooh.png"
-            class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500"
-            alt="Imagen de Luis Morales">
-        </div>
-      </div>
-
-      <!-- /END THE FEATURETTES -->
-
-    </div><!-- /.container -->
-
-
-    <!-- FOOTER -->
-    <footer class="container">
-      <p class="float-end"><a href="#">Regresar al Inicio</a></p>
-      <p>&copy; 2025 UTA-FISEI &middot; <a href="#">Privacidad</a> &middot; <a href="#">Términos</a></p>
-    </footer>
-  </main>
-  <script defer src="../assets/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq"></script>
-
-</body>
-
+      <!-- FOOTER -->
+      <footer class="container">
+        <p class="float-end"><a href="#">Regresar al Inicio</a></p>
+        <p>
+          &copy; 2025 UTA-FISEI &middot; <a href="#">Privacidad</a> &middot;
+          <a href="#">Términos</a>
+        </p>
+      </footer>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
 </html>
